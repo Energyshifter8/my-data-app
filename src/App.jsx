@@ -17,7 +17,7 @@ function App() {
           <div className="input-group">
             <input
               type="text"
-              placeholder="Raw data оруулна уу..."
+              placeholder="Чин сэтгэлийн хариулт аа өгнө үү..."
               className="custom-input"
             />
             <button className="send-button">SEND TO FIREBASE</button>
