@@ -43,7 +43,7 @@ function App() {
             {/* Энд хэрэглэгч датагаа бичнэ */}
             <input
               type="text"
-              placeholder="Raw data оруулна уу..."
+              placeholder="Түүнд хариулт өгөх хэсэг..."
               className="custom-input"
               value={rawData}
               onChange={(e) => setRawData(e.target.value)}
