@@ -11,9 +11,7 @@ function App() {
           <h1 className="main-title">
             THE <br /> DATE <br /> EDITION
           </h1>
-          <p className="description">
-            A new world of commerce. 150+ product updates.
-          </p>
+          <p className="description">Таныг болзоонд урьж байна</p>
 
           {/* Дата авах хэсэг (Firebase-тэй дараа холбоно) */}
           <div className="input-group">
