@@ -35,7 +35,7 @@ function App() {
       <div className="overlay">
         <div className="content">
           <h1 className="main-title">
-            THE <br /> DATE <br /> EDITION
+            HELLO <br /> BBYGIRL <br /> .
           </h1>
           <p className="description">Таныг болзоонд урьж байна</p>
 
