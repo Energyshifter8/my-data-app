@@ -9,7 +9,7 @@ function App() {
       <div className="overlay">
         <div className="content">
           <h1 className="main-title">
-            THE <br /> RENAISSANCE <br /> EDITION
+            THE <br /> DATE <br /> EDITION
           </h1>
           <p className="description">
             A new world of commerce. 150+ product updates.
