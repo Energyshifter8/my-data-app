@@ -42,10 +42,18 @@
 }
 
 .send-button {
-  padding: 12px 24px;
-  margin-left: 10px;
-  background: #fff;
+  background-color: white; /* Товчлуурын суурь өнгө цагаан */
+  color: black; /* Бичвэрийн өнгө хар (ингэж байж харагдана) */
+  padding: 10px 20px;
   border: none;
-  cursor: pointer;
+  border-radius: 5px;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px; /* Үсэг хоорондын зайг жаахан ихэсгэвэл гоё */
+}
+
+.send-button:hover {
+  background-color: #f0f0f0; /* Хулганаа аваачихад үл ялиг саарал болно */
+  transform: scale(1.05); /* Бага зэрэг томорно */
 }
