@@ -11,18 +11,12 @@ function App() {
 
   // ENTER дарахад ажиллах функц
   const handleStart = () => {
-    setShowMain(true);
-    // Дууг тоглуулах (public фолдерт music.mp3 нэртэй файл байна гэж үзлээ)
-    const audio = new Audio("/music.mp3");
-    audio.loop = true;
-    audio
-      .play()
-      .catch((err) =>
-        console.log(
-          "Дуу тоглуулахад алдаа гарлаа. Файлын нэрээ шалгаарай:",
-          err,
-        ),
-      );
+    setShowMain(true); // Үндсэн хуудсыг харуулна
+
+    // Дуу тоглуулах хэсэг
+    const audio = new Audio("/Girls.mp3"); // Файлын нэр яг ижил байх ёстой
+    audio.loop = true; // Дууг тасралтгүй явуулна
+    audio.play().catch((e) => console.error("Дууны алдаа:", e));
   };
 
   const handleSend = async () => {
