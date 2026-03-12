@@ -35,9 +35,9 @@ function App() {
       <div className="overlay">
         <div className="content">
           <h1 className="main-title">
-            HELLO <br /> BBYGIRL <br /> .
+            HELLO <br /> SWEET <br /> .
           </h1>
-          <p className="description">Таныг болзоонд урьж байна</p>
+          <p className="description">Таныг хоолонд урьж байна</p>
 
           <div className="input-group">
             {/* Энд хэрэглэгч датагаа бичнэ */}
