@@ -52,8 +52,8 @@ function App() {
               HELLO <br /> SWEET <br /> .
             </h1>
             <p className="description">
-              Таныг болзоонд урьж байна.Та завтай өдрөө хэлээд өгч болох уу?
-              Urgeljliig Ori - oos
+              Чиний хөөрхөн инээмсэглэлийг ахиж хармаар санагдлаа. Завтай өдөр
+              байвал болзож болох болов уу
             </p>
 
             <div className="input-group">
