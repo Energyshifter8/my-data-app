@@ -2,10 +2,13 @@ import { useState } from "react";
 import { db } from "./firebase-config"; // Чиний саяны үүсгэсэн тохиргооны файл
 import { collection, addDoc } from "firebase/firestore";
 import "./App.css";
+import WelcomeScreen from "./WelcomeScreen";
 
 function App() {
   // Хэрэглэгчийн бичиж байгаа датаг хадгалах "сав"
   const [rawData, setRawData] = useState("");
+  const [showMain, setShowMain] = useState(false);
+  const audioRef = React.useRef(null); // Дууны удирдлага
 
   // SEND товчлуур дээр дарахад ажиллах функц
   const handleSend = async () => {
@@ -14,6 +17,12 @@ function App() {
       alert("Датагаа оруулна уу!");
       return;
     }
+    const handleStart = () => {
+      setShowMain(true);
+      const audio = new Audio("/music.mp3"); // public доторх дууны зам
+      audio.loop = true;
+      audio.play();
+    };
 
     try {
       // Firebase-ийн Firestore руу "user_data" гэдэг цуглуулга руу датаг шиднэ
