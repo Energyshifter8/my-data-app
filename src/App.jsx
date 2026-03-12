@@ -49,9 +49,12 @@ function App() {
         <div className="overlay">
           <div className="content">
             <h1 className="main-title">
-              HELLO <br /> BBYGIRL <br /> .
+              HELLO <br /> SWEET <br /> .
             </h1>
-            <p className="description">Таныг болзоонд урьж байна</p>
+            <p className="description">
+              Таныг болзоонд урьж байна.Та завтай өдрөө хэлээд өгч болох уу?
+              Urgeljliig Ori - oos
+            </p>
 
             <div className="input-group">
               <input
