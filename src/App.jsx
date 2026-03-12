@@ -40,30 +40,36 @@ function App() {
   };
 
   return (
-    <div className="hero">
-      <div className="overlay">
-        <div className="content">
-          <h1 className="main-title">
-            HELLO <br /> SWEET <br /> .
-          </h1>
-          <p className="description">Таныг хоолонд урьж байна</p>
+    <div className="App">
+      {!showMain ? (
+        /* Хэрэв эхлээгүй байвал Pop-up харагдана */
+        <WelcomeScreen onStart={handleStart} />
+      ) : (
+        /* Эхэлсэн үед чиний SS дээрх үндсэн код харагдана */
+        <div className="hero">
+          <div className="overlay">
+            <div className="content">
+              <h1 className="main-title">
+                HELLO <br /> SWEET <br />
+              </h1>
+              <p className="description">Таныг хоолонд урьж байна</p>
 
-          <div className="input-group">
-            {/* Энд хэрэглэгч датагаа бичнэ */}
-            <input
-              type="text"
-              placeholder="Түүнд хариулт өгөх хэсэг..."
-              className="custom-input"
-              value={rawData}
-              onChange={(e) => setRawData(e.target.value)}
-            />
-            {/* Энэ товчлуур дээр дарахад handleSend функц ажиллана */}
-            <button className="send-button" onClick={handleSend}>
-              SEND
-            </button>
+              <div className="input-group">
+                <input
+                  type="text"
+                  placeholder="Түүнд хариулт өгөх хэсэг..."
+                  className="custom-input"
+                  value={rawData}
+                  onChange={(e) => setRawData(e.target.value)}
+                />
+                <button className="send-button" onClick={handleSend}>
+                  SEND
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
