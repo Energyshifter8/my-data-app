@@ -69,9 +69,7 @@ const WelcomeScreen = ({ onStart }) => {
           opacity: 0.5,
           textTransform: "uppercase",
         }}
-      >
-        Click to unlock the experience
-      </p>
+      ></p>
 
       {/* Анимацийн стиль */}
       <style>
