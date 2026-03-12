@@ -1,58 +1,64 @@
-import { useState } from "react";
-import { db } from "./firebase-config"; // Чиний саяны үүсгэсэн тохиргооны файл
+import { useState, useRef } from "react"; // useRef нэмсэн
+import { db } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import "./App.css";
-import WelcomeScreen from "./WelcomeScreen";
+import WelcomeScreen from "./WelcomeScreen"; // Шинэ файлаа дуудсан
 
 function App() {
-  // Хэрэглэгчийн бичиж байгаа датаг хадгалах "сав"
   const [rawData, setRawData] = useState("");
-  const [showMain, setShowMain] = useState(false);
-  const audioRef = React.useRef(null); // Дууны удирдлага
+  const [showMain, setShowMain] = useState(false); // Pop-up харуулах төлөв
+  const audioRef = useRef(null); // Дууг удирдах ref
 
-  // SEND товчлуур дээр дарахад ажиллах функц
+  // ENTER дарахад ажиллах функц
+  const handleStart = () => {
+    setShowMain(true);
+    // Дууг тоглуулах (public фолдерт music.mp3 нэртэй файл байна гэж үзлээ)
+    const audio = new Audio("/music.mp3");
+    audio.loop = true;
+    audio
+      .play()
+      .catch((err) =>
+        console.log(
+          "Дуу тоглуулахад алдаа гарлаа. Файлын нэрээ шалгаарай:",
+          err,
+        ),
+      );
+  };
+
   const handleSend = async () => {
-    // Хэрэв юу ч бичээгүй байвал анхааруулга өгнө
     if (rawData === "") {
       alert("Датагаа оруулна уу!");
       return;
     }
-    const handleStart = () => {
-      setShowMain(true);
-      const audio = new Audio("/music.mp3"); // public доторх дууны зам
-      audio.loop = true;
-      audio.play();
-    };
 
     try {
-      // Firebase-ийн Firestore руу "user_data" гэдэг цуглуулга руу датаг шиднэ
       await addDoc(collection(db, "user_data"), {
         text: rawData,
-        sentAt: new Date(), // Илгээсэн цаг хугацааг хадгална
+        sentAt: new Date(),
       });
 
-      alert("Амжилттай илгээгдлээ! Firebase Console-оо шалгаарай.");
-      setRawData(""); // Илгээсний дараа бичих талбарыг хоосон болгоно
+      alert("Амжилттай илгээгдлээ!");
+      setRawData("");
     } catch (error) {
       console.error("Алдаа гарлаа: ", error);
-      alert("Алдаа гарлаа. Firestore-ийн Rules хэсгийг шалгаарай!");
+      alert("Алдаа гарлаа.");
     }
   };
 
   return (
     <div className="App">
+      {/* 1. Хэрэв showMain false бол WelcomeScreen-г харуулна */}
       {!showMain ? (
-        /* Хэрэв эхлээгүй байвал Pop-up харагдана */
         <WelcomeScreen onStart={handleStart} />
       ) : (
-        /* Эхэлсэн үед чиний SS дээрх үндсэн код харагдана */
-        <div className="hero">
+        /* 2. showMain true болсон үед чиний үндсэн код ажиллана */
+        <div className="hero animate-fade-in">
           <div className="overlay">
             <div className="content">
               <h1 className="main-title">
-                HELLO <br /> SWEET <br />
+                HELLO <br /> BBYGIRL <br /> .
               </h1>
-              <p className="description">Таныг хоолонд урьж байна</p>
+              <p className="description">Таныг болзоонд урьж байна</p>
 
               <div className="input-group">
                 <input
