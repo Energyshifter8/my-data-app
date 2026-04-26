@@ -14,7 +14,7 @@ function App() {
     setShowMain(true); // Үндсэн хуудсыг харуулна
 
     // Дуу тоглуулах хэсэг
-    const audio = new Audio("/Girls.mp3"); // Файлын нэр яг ижил байх ёстой
+    const audio = new Audio("/The Lemons - Suuliin uyanga - The Lemons.mp3"); // Файлын нэр яг ижил байх ёстой
     audio.loop = true; // Дууг тасралтгүй явуулна
     audio.play().catch((e) => console.error("Дууны алдаа:", e));
   };
