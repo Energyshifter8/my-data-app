@@ -30,7 +30,7 @@ const WelcomeScreen = ({ onStart }) => {
           animation: "pulse 2s infinite",
         }}
       >
-        ARE YOU READY?
+        Message for Puule
       </h1>
 
       {/* Enter товчлуур */}
