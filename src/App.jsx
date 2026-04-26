@@ -49,11 +49,11 @@ function App() {
         <div className="overlay">
           <div className="content">
             <h1 className="main-title">
-              HELLO <br /> SWEET <br /> .
+              HI <br /> ANGEL <br /> .
             </h1>
             <p className="description">
-              Чиний хөөрхөн инээмсэглэлийг ахиж хармаар санагдлаа. Завтай өдөр
-              байвал болзож болох уу?
+              Өчигдөр жаахан таагүй зүйл боллоо. Өнөөдөр орой завтай бол хоёулаа
+              Үндэсний цэцэрлэгт хүрээлэн орох уу?
             </p>
 
             <div className="input-group">
