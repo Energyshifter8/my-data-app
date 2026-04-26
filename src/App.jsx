@@ -13,10 +13,16 @@ function App() {
   const handleStart = () => {
     setShowMain(true); // Үндсэн хуудсыг харуулна
 
-    // Дуу тоглуулах хэсэг
-    const audio = new Audio("/The Lemons - Suuliin uyanga - The Lemons.mp3"); // Файлын нэр яг ижил байх ёстой
-    audio.loop = true; // Дууг тасралтгүй явуулна
-    audio.play().catch((e) => console.error("Дууны алдаа:", e));
+    // audioRef-д хадгалснаар дараа нь өөр функц дээр ашиглаж болно
+    audioRef.current = new Audio(
+      "/The Lemons - Suuliin uyanga - The Lemons.mp3",
+    );
+    audioRef.current.loop = true;
+
+    // Дуу эхлэх хугацаа (секундээр)
+    audioRef.current.currentTime = 17;
+
+    audioRef.current.play().catch((e) => console.error("Дууны алдаа:", e));
   };
 
   const handleSend = async () => {
