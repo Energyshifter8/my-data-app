@@ -1,30 +1,28 @@
 .hero {
   height: 100vh;
-  width: 100vw;
-  background-image: url("https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=2000"); /* Эсвэл өөрийн зургийг тавь */
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=2000");
   background-size: cover;
   background-position: center;
-  margin: 0;
 }
 
 .overlay {
-  background: rgba(
-    0,
-    0,
-    0,
-    0.4
-  ); /* Зураг дээрх текст тод харагдуулах бүрхүүл */
+  background: rgba(0, 0, 0, 0.4);
   height: 100%;
   display: flex;
   align-items: center;
   padding-left: 10%;
 }
 
+.content {
+  max-width: 600px;
+}
+
 .main-title {
   color: white;
   font-size: 80px;
   line-height: 0.9;
-  font-family: "Times New Roman", serif; /* Renaissance vibe өгнө */
+  font-family: "Times New Roman", serif;
   margin: 0;
 }
 
@@ -32,6 +30,13 @@
   color: #ddd;
   font-size: 18px;
   margin-top: 20px;
+}
+
+.input-group {
+  margin-top: 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .custom-input {
@@ -42,18 +47,32 @@
 }
 
 .send-button {
-  background-color: white; /* Товчлуурын суурь өнгө цагаан */
-  color: black; /* Бичвэрийн өнгө хар (ингэж байж харагдана) */
+  background-color: white;
+  color: black;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
-  letter-spacing: 1px; /* Үсэг хоорондын зайг жаахан ихэсгэвэл гоё */
+  letter-spacing: 1px;
 }
 
 .send-button:hover {
-  background-color: #f0f0f0; /* Хулганаа аваачихад үл ялиг саарал болно */
-  transform: scale(1.05); /* Бага зэрэг томорно */
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .overlay {
+    padding-left: 5%;
+  }
+
+  .main-title {
+    font-size: 48px;
+  }
+
+  .custom-input {
+    width: 100%;
+  }
 }
