@@ -6,16 +6,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0f0f0f",
-          color: "#aaa",
-        }}
-      >
+      <div className="h-screen flex items-center justify-center bg-[#0f0f0f] text-[#aaa]">
         Loading...
       </div>
     );

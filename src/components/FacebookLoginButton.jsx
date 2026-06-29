@@ -1,37 +1,9 @@
-import { useState } from "react";
-
-const btnStyle = {
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: "10px",
-  width: "100%",
-  height: "48px",
-  border: "none",
-  borderRadius: "8px",
-  background: "#1877F2",
-  color: "#fff",
-  fontSize: "1rem",
-  fontWeight: 600,
-  cursor: "pointer",
-  transition: "background 0.2s",
-};
-
 export default function FacebookLoginButton({ onClick, disabled }) {
-  const [hover, setHover] = useState(false);
-
   return (
     <button
-      style={{
-        ...btnStyle,
-        background: hover && !disabled ? "#166FE5" : "#1877F2",
-        opacity: disabled ? 0.6 : 1,
-        cursor: disabled ? "not-allowed" : "pointer",
-      }}
+      className="group flex w-full h-12 items-center justify-center gap-2.5 border-none rounded-lg text-base font-semibold cursor-pointer transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed bg-[#1877F2] hover:enabled:bg-[#166FE5] text-white"
       onClick={onClick}
       disabled={disabled}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
         <path
@@ -40,21 +12,10 @@ export default function FacebookLoginButton({ onClick, disabled }) {
         />
       </svg>
       {disabled ? (
-        <span
-          style={{
-            width: "18px",
-            height: "18px",
-            border: "2px solid rgba(255,255,255,0.3)",
-            borderTopColor: "#fff",
-            borderRadius: "50%",
-            animation: "fb-spin 0.6s linear infinite",
-            display: "inline-block",
-          }}
-        />
+        <span className="inline-block w-[18px] h-[18px] border-2 border-white/30 border-t-white rounded-full animate-spin" />
       ) : (
         "Continue with Facebook"
       )}
-      <style>{`@keyframes fb-spin { to { transform: rotate(360deg); } }`}</style>
     </button>
   );
 }

@@ -1,3 +1,8 @@
+// Facebook App setup:
+// 1. developers.facebook.com → Your App → Facebook Login → Settings
+// 2. Add OAuth Redirect URI: https://your-app.vercel.app/__/auth/handler
+// 3. Copy App ID → paste in Firebase Console → Auth → Sign-in method → Facebook
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import {
