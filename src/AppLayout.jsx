@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./context/AuthContext";
 import "./AppLayout.css";
 
 export default function AppLayout({ children }) {

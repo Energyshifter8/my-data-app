@@ -1,11 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, facebookProvider } from "./firebase-config";
-import {
-  signInWithRedirect,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { auth, loginWithFacebook as fbLogin, logout as fbLogout } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const AuthContext = createContext(null);
 
@@ -30,12 +26,13 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const loginWithFacebook = () => {
-    signInWithRedirect(auth, facebookProvider);
+  const loginWithFacebook = async () => {
+    const { user: fbUser } = await fbLogin();
+    return fbUser;
   };
 
   const logout = async () => {
-    await signOut(auth);
+    await fbLogout();
   };
 
   return (
