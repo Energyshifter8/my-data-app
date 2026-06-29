@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { db } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import "./App.css";
 
 export default function Dashboard() {
   const [rawData, setRawData] = useState("");
-  const audioRef = useRef(null);
 
   const handleSend = async () => {
     if (rawData === "") {
