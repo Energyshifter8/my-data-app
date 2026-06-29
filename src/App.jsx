@@ -1,87 +1,50 @@
-import { useState, useRef } from "react"; // useRef нэмсэн
-import { db } from "./firebase-config";
-import { collection, addDoc } from "firebase/firestore";
-import "./App.css";
-import WelcomeScreen from "./WelcomeScreen"; // Шинэ файлаа дуудсан
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import AppLayout from "./AppLayout";
+import LandingPage from "./LandingPage";
+import Dashboard from "./Dashboard";
 
-function App() {
-  const [rawData, setRawData] = useState("");
-  const [showMain, setShowMain] = useState(false); // Pop-up харуулах төлөв
-  const audioRef = useRef(null); // Дууг удирдах ref
+function ProtectedRoute({ children }) {
+  const { user, loading } = useAuth();
 
-  // ENTER дарахад ажиллах функц
-  const handleStart = () => {
-    setShowMain(true); // Үндсэн хуудсыг харуулна
-
-    // audioRef-д хадгалснаар дараа нь өөр функц дээр ашиглаж болно
-    audioRef.current = new Audio(
-      "/The Lemons - Suuliin uyanga - The Lemons.mp3",
-    );
-    audioRef.current.loop = true;
-
-    // Дуу эхлэх хугацаа (секундээр)
-    audioRef.current.currentTime = 17;
-
-    audioRef.current.play().catch((e) => console.error("Дууны алдаа:", e));
-  };
-
-  const handleSend = async () => {
-    if (rawData === "") {
-      alert("Датагаа оруулна уу!");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "user_data"), {
-        text: rawData,
-        sentAt: new Date(),
-      });
-
-      alert("Амжилттай илгээгдлээ!");
-      setRawData("");
-    } catch (error) {
-      console.error("Алдаа гарлаа: ", error);
-      alert("Алдаа гарлаа.");
-    }
-  };
-
-  return (
-    <div
-      className="App"
-      style={{ position: "relative", width: "100%", minHeight: "100vh" }}
-    >
-      {/* 1. Үндсэн цэцэгтэй хуудас (Энэ үргэлж ард нь байж байна) */}
-      <div className="hero">
-        <div className="overlay">
-          <div className="content">
-            <h1 className="main-title">
-              HI <br /> ANGEL <br /> .
-            </h1>
-            <p className="description">
-              Өчигдөр жаахан таагүй зүйл боллоо. Өнөөдөр орой завтай бол хоёулаа
-              Үндэсний цэцэрлэгт хүрээлэн орох уу?
-            </p>
-
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Түүнд хариулт өгөх хэсэг..."
-                className="custom-input"
-                value={rawData}
-                onChange={(e) => setRawData(e.target.value)}
-              />
-              <button className="send-button" onClick={handleSend}>
-                SEND
-              </button>
-            </div>
-          </div>
-        </div>
+  if (loading) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#0f0f0f",
+          color: "#aaa",
+        }}
+      >
+        Loading...
       </div>
+    );
+  }
 
-      {/* 2. Welcome Screen (Зөвхөн эхлээгүй үед дээр нь Blur болж харагдана) */}
-      {!showMain && <WelcomeScreen onStart={handleStart} />}
-    </div>
-  );
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+
+  return children;
 }
 
-export default App;
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <AppLayout>
+              <Dashboard />
+            </AppLayout>
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+}

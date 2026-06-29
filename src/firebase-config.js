@@ -1,6 +1,6 @@
-// Firebase-ийн үндсэн функцүүдийг дуудаж байна
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore"; // Firestore-ийг дуудаж байна
+import { getFirestore } from "firebase/firestore";
+import { getAuth, FacebookAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDIQ4myNegnjPOJT967HKahv2_J9LIVAJw",
@@ -12,8 +12,8 @@ const firebaseConfig = {
   measurementId: "G-MXE7D5DZ88",
 };
 
-// Firebase-ийг ажиллуулж байна
 const app = initializeApp(firebaseConfig);
 
-// Өгөгдлийн санг (Firestore) бусад файлдаа ашиглахын тулд гаргаж (export) байна
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const facebookProvider = new FacebookAuthProvider();
