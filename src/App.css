@@ -27,7 +27,7 @@
 }
 
 .description {
-  color: #ddd;
+  color: #fff;
   font-size: 18px;
   margin-top: 20px;
 }
@@ -44,6 +44,8 @@
   width: 300px;
   border: none;
   border-radius: 4px;
+  color: #1c1e21;
+  background: #fff;
 }
 
 .send-button {

